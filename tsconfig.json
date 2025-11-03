@@ -1,0 +1,86 @@
+// {
+//   // Visit https://aka.ms/tsconfig to read more about this file
+//   "compilerOptions": {
+//     // File Layout
+//     "rootDir": "./src",
+//     "outDir": "./dist",
+
+//     // Environment Settings
+//     // See also https://aka.ms/tsconfig/module
+//     "module": "nodenext",
+//     "target": "esnext",
+//     "types": [],
+//     // For nodejs:
+//     // "lib": ["esnext"],
+//     // "types": ["node"],
+//     // and npm install -D @types/node
+
+//     // Other Outputs
+//     "sourceMap": true,
+//     "declaration": true,
+//     "declarationMap": true,
+
+//     // Stricter Typechecking Options
+//     "noUncheckedIndexedAccess": true,
+//     "exactOptionalPropertyTypes": true,
+
+//     // Style Options
+//     // "noImplicitReturns": true,
+//     // "noImplicitOverride": true,
+//     // "noUnusedLocals": true,
+//     // "noUnusedParameters": true,
+//     // "noFallthroughCasesInSwitch": true,
+//     // "noPropertyAccessFromIndexSignature": true,
+
+//     // Recommended Options
+//     "strict": true,
+//     "jsx": "react-jsx",
+//     "verbatimModuleSyntax": true,
+//     "isolatedModules": true,
+//     "noUncheckedSideEffectImports": true,
+//     "moduleDetection": "force",
+//     "skipLibCheck": true,
+//   }
+// }
+
+
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    /* ---------- File Layout ---------- */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* ---------- Environment Settings ---------- */
+    "module": "nodenext",         // ✅ good for Node 18+ (supports ESModules & CommonJS)
+    "moduleResolution": "nodenext", // ✅ required when using module: nodenext
+    "target": "ES2022",           // ✅ slightly safer than "esnext" for production use
+    "lib": ["ES2022"],            // ✅ modern JS features
+    "types": ["node"],            // ✅ needed for Node globals like process, __dirname
+
+    /* ---------- Outputs ---------- */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* ---------- Strictness ---------- */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* ---------- Module & Interop ---------- */
+    "esModuleInterop": true,      // ✅ needed for import express from 'express'
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false, // ❌ set to false for compatibility with common import styles
+    "isolatedModules": true,
+    "skipLibCheck": true,
+
+    /* ---------- Experimental (optional) ---------- */
+    // "noImplicitReturns": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true
+  },
+
+  "include": ["src"],  // ✅ ensures compiler watches your source folder
+  "exclude": ["node_modules", "dist"]
+}

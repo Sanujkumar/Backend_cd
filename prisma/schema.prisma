@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum CodeType {
+  COMMON
+  UNIQUE
+}
+
+enum CodeStatus {
+  ACTIVE
+  expired   
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String       @unique
+  password    String
+  role        Role         @default(USER)
+  redemptions Redemption[] @relation("UserRedemptions")
+  redeemCode  RedeemCode[] 
+  createdAt   DateTime     @default(now())
+}
+
+model RedeemCode {
+  id              Int          @id @default(autoincrement())
+  code            String       @unique
+  type            CodeType
+  redemptionLimit Int?
+  redeemedCount   Int          @default(0)
+  expiryAt        DateTime
+  status          CodeStatus   @default(ACTIVE)
+  redemptions     Redemption[]
+  createdBy       Int
+  createdByUser   User         @relation(fields: [createdBy], references: [id])
+  createdAt       DateTime     @default(now())
+}
+
+model Redemption {
+  id         Int        @id @default(autoincrement())
+  codeId     Int
+  userId     Int
+  redeemedAt DateTime   @default(now())
+  code       RedeemCode @relation(fields: [codeId], references: [id])
+  user       User       @relation("UserRedemptions", fields: [userId], references: [id])
+}
