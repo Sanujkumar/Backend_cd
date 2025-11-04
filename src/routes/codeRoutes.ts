@@ -10,7 +10,7 @@ const router = Router();
 
 router.post("/create",authorize,requireRole("ADMIN"), createCode);
 router.post("/reedem",authorize,requireRole("USER"), redeemCode);
-router.get("/history",authorize,requireRole("ADMIN"),getRedemptionHistory)
+router.get("/history",authorize,requireRole("USER"),getRedemptionHistory)
 
 
 export default router;

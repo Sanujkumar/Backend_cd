@@ -77,7 +77,7 @@ export const getRedemptionHistory = async (req: JwtPayloadWithUser, res: Respons
   console.log("here",req.user?.role);  
   try {
     
-    if (req.user?.role !== "ADMIN") {
+    if (req.user?.role !== "USER") {
       return res.status(403).json({ message: "Access denied. Admin only." });
     }      
 
