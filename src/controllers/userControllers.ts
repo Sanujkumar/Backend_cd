@@ -14,6 +14,7 @@ export const registerUsers = async (req: Request, res: Response) => {
   try {
     console.log("hi register api");
     const { name, email, password, role } = req.body;
+    console.log(req.body);
 
     const hashPassword = await bcrypt.hash(password, 10);
 
