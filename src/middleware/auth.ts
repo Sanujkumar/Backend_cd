@@ -25,7 +25,7 @@ if (!JWT_SECRET) {
 }
 
 export  const authorize = (
-  req: CustomRequest,
+  req: JwtPayloadWithUser,
   res: Response,
   next: NextFunction
 ) => {
@@ -49,14 +49,15 @@ export  const authorize = (
       return res.status(401).json({ success: false, error: "Invalid token" });
     }
 
+    req.user = decoded.user;
     req.userId = decoded.user.id.toString();
     req.email = decoded.user.email;
-    req.role = decoded.user.role;
+    req.role = decoded.user.role;  
     req.name = decoded.user.name;
-
+  
     next();
   } catch (error) {
     console.error("authorize error:", error);
     res.status(401).json({ success: false, error: "Invalid or expired token" });
   }
-};   
+};     

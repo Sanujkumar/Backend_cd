@@ -71,4 +71,28 @@ catch (err) {
     })
   }
 };
+
+
+export const getRedemptionHistory = async (req: JwtPayloadWithUser, res: Response) => {
+  console.log("here",req.user?.role);  
+  try {
+    
+    if (req.user?.role !== "ADMIN") {
+      return res.status(403).json({ message: "Access denied. Admin only." });
+    }      
+
+    const redemptions = await prisma.redemption.findMany({
+      include: {
+        user: { select: { id: true, name: true, email: true } },
+        code: { select: { code: true, type: true, status: true } },
+      },
+      orderBy: { redeemedAt: "desc" },
+    });
+
+    res.json({ success: true, data: redemptions });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};   
     

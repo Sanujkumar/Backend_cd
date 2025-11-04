@@ -17,7 +17,8 @@ app.use(
 );  
   
 app.use("/api/users",userRoutes);
-app.use("/api/code",codeRoutes);   
+app.use("/api/code",codeRoutes);  
+ 
 
 
 app.get("/",(req,res) => {

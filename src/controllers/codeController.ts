@@ -18,7 +18,7 @@ export const createCode = async (req: JwtPayloadWithUser, res: Response) => {
     data: {
       code: code || generateCode(),
       type,
-      redemptionLimit: type === "COMMON" ? redemptionLimit : null,
+      redemptionLimit: type === "COMMON" ? Number(redemptionLimit) : null,
       expiryAt: new Date(expiryAt),
       createdBy: adminId!,
     },
@@ -30,3 +30,5 @@ export const createCode = async (req: JwtPayloadWithUser, res: Response) => {
   res.status(500).json({ message: "Server error" });
 }
 };
+
+

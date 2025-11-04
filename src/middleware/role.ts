@@ -5,6 +5,8 @@ import { CustomRequest } from "./auth";
 export const requireRole = (requiredRole: string) => {
   return (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
+      console.log("Role from token:", req.role, "Expected:", requiredRole);
+
       if (!req.role) {
         return res.status(401).json({ success: false, error: "Not authenticated" });
       }
