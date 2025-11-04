@@ -5,7 +5,6 @@ import {requireRole}  from "../middleware/role";
 import {authorize} from "../middleware/auth";
 import { getRedemptionHistory } from "../controllers/reedemController";
 
-  
 const router = Router();
 
 router.post("/create",authorize,requireRole("ADMIN"), createCode);

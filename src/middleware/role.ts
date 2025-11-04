@@ -1,7 +1,7 @@
 
 import { Response, NextFunction } from "express";
 import { CustomRequest } from "./auth";
-
+import { JwtPayloadWithUser } from "./auth";
 export const requireRole = (requiredRole: string) => {
   return (req: CustomRequest, res: Response, next: NextFunction) => {
     try {

@@ -7,6 +7,10 @@ export const redeemCode = async (req: JwtPayloadWithUser, res: Response) => {
   try{
     const { code } = req.body;
     const userId = req.user?.id;
+    console.log("userId",userId)
+    console.log("here user",req.user?.role);  
+    console.log("code",code);
+    
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized: missing user" });
     }

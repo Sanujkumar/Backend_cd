@@ -12,13 +12,16 @@ const PORT = 4000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000", 
+      "https://frontend-cd-livid.vercel.app", 
+    ],
   })
 );  
   
 app.use("/api/users",userRoutes);
 app.use("/api/code",codeRoutes);  
- 
+
 
 
 app.get("/",(req,res) => {
