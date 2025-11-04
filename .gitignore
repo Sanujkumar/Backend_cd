@@ -1,25 +1,11 @@
-# Node modules
-node_modules/
+# Node dependencies
+node_modules/  
 
-# Env files
+
 .env
-.env.local
 
-# Ignore backend build output
-backend/dist/
 
-# Ignore Prisma generated code (if generated inside src/)
-backend/src/generated/prisma/
+src/generated/prisma/   
 
-# Ignore Next.js build output (frontend)
-frontend/.next/
-frontend/out/
 
-# Logs
-logs/
-*.log
-
-# System/editor files
-.DS_Store
-.vscode/
-  
+dist/  
